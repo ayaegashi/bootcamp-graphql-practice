@@ -5,6 +5,7 @@ exports.up = knex => knex.schema.createTable('publishers', table => {
     .notNullable()
     .primary()
     .defaultTo(knex.raw('uuid_generate_v4()'))
+    .onDelete('CASCADE')
 
   table.string('company').notNullable()
 
@@ -15,6 +16,7 @@ exports.up = knex => knex.schema.createTable('publishers', table => {
   table
     .uuid('addressId')
     .references('addresses.id')
+    .onDelete('CASCADE')
 
   table.timestamp('createdAt').defaultTo(knex.fn.now())
   table.timestamp('updatedAt').defaultTo(knex.fn.now())

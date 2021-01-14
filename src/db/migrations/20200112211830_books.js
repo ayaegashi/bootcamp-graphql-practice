@@ -20,10 +20,12 @@ exports.up = knex => knex.schema.createTable('books', table => {
     .uuid('authorId')
     .references('authors.id')
     .notNullable()
+    .onDelete('CASCADE')
 
   table
     .uuid('publisherId')
     .references('publishers.id')
+    .onDelete('CASCADE')
     .notNullable()
 
   table.timestamp('createdAt').defaultTo(knex.fn.now())

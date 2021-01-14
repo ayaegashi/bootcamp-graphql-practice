@@ -19,6 +19,7 @@ exports.up = knex => knex.schema.createTable('authors', table => {
   table
     .uuid('addressId')
     .references('addresses.id')
+    .onDelete('CASCADE')
 
   table.timestamp('createdAt').defaultTo(knex.fn.now())
   table.timestamp('updatedAt').defaultTo(knex.fn.now())
